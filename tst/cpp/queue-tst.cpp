@@ -1,6 +1,6 @@
-// queue-test.cpp
+// queue-tst.cpp
 
-#include "src/queue/cpp/queue.h"
+#include "src/queue/cpp/queue.hpp"
 
 int main(int argc, char *argv[])
 {

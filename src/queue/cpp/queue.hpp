@@ -13,7 +13,7 @@ public:
 class queue_t {
 public:
   // creation/deletion
-  void queue_t(const queue_init_t& init);
+  void queue_t(const queue_init_t& init) = 0;
 
   // information
   const size_t size() = 0;

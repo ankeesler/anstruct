@@ -1,6 +1,6 @@
 // queue-array.cpp
 
-#include "queue.h"
+#include "queue.hpp"
 
 class queue_array_t : public queue_t {
 public:
