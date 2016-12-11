@@ -45,7 +45,7 @@ void queue_add(struct queue_t *queue, const void *element)
     const void **new_data = malloc(sizeof(void *) * queue->max_size);
     memmove(new_data, queue->data, queue->cur_size * sizeof(queue->data[0]));
     free(queue->data);
-    queue->data = new_data;  
+    queue->data = new_data;
   }
   queue->data[queue->cur_size++] = element;
 }
@@ -55,7 +55,7 @@ const void *queue_remove(struct queue_t *queue)
   const void *data = queue_peek(queue);
   if (data != NULL) {
     queue->cur_size--;
-    memmove(queue->data, queue->data + 1, queue->cur_size * sizeof(queue->data[0]));
+    memmove(queue->data, queue->data + 1, queue->cur_size * sizeof(data));
   }
   return data;
 }

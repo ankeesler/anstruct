@@ -1,7 +1,7 @@
 // queue.h
 
-#ifndef __QUEUE_H__
-#define __QUEUE_H__
+#ifndef __QUEUE_HPP__
+#define __QUEUE_HPP__
 
 #include "cpp/types.h"
 
@@ -15,15 +15,15 @@ public:
 class queue_t {
 public:
   // creation/deletion
-  virtual void init(const queue_init_t& init) = 0;
+  virtual ~queue_t() { };
 
   // information
   virtual size_t size() = 0;
-  //virtual const void peek() = 0;
+  virtual void *peek() = 0;
 
   // manipulation
-  //virtual void add(const void& element) = 0;
-  //virtual const void& remove() = 0;
+  virtual void add(void *element) = 0;
+  virtual void *remove() = 0;
 };
 
-#endif // __QUEUE_H__
+#endif // __QUEUE_HPP__
