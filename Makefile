@@ -6,13 +6,19 @@
 CC = clang
 CXX = clang++
 
-C_INCLUDES = -I. -Isrc/core
-C_DEFINES =
-CFLAGS = -g -MD -Wall -Werror -O0 $(C_INCLUDES) $(C_DEFINES)
+CINCLUDES = -I. -Isrc/core
+CDEFINES =
+CFLAGS = -g -MD -Wall -Werror -O0 $(CINCLUDES) $(CDEFINES)
 
-CXX_INCLUDES = -I. -Isrc/core
-CXX_DEFINES =
-CXXFLAGS = -MD -Wall -Werror -O0 $(CXX_INCLUDES) $(CXX_DEFINES)
+CXXINCLUDES = -I. -Isrc/core
+CXXDEFINES =
+CXXFLAGS = -g -MD -Wall -Werror -O0 $(CXXINCLUDES) $(CXXDEFINES)
+
+LD = clang
+LDXX = clang++
+
+LDFLAGS =
+LDXXFLAGS =
 
 SRC_DIR = src
 BIN_DIR = bin
@@ -21,8 +27,9 @@ TST_DIR = tst
 VPATH += $(shell find $(SRC_DIR) $(TST_DIR) -type d)
 
 ifdef DEBUG
-  DEBUGPREFIX = debug-
-	C_DEFINES += -DTST_VERBOSE
+  DEBUGPOSTFIX = -debug
+	CDEFINES += -DTST_VERBOSE
+	CXXDEFINES += -DTST_VERBOSE
 endif
 
 -include $(wildcard $(BIN_DIR)/*.d)
@@ -62,19 +69,30 @@ ifeq ($(MAKECMDGOALS),test)
   endif
 endif
 
-$(BIN_DIR)/$(DEBUGPREFIX)%-c.o: %.c | $(BIN_DIR)
-	$(CC) $(CFLAGS) -o $@ -c $<
+ifeq ($(LNG),c)
+	COMPILER=$(CC)
+	COMPILERFLAGS=$(CFLAGS)
+	LINKER=$(LD)
+	LINKERFLAGS=$(LDFLAGS)
+else ifeq ($(LNG),cpp)
+  COMPILER=$(CXX)
+	COMPILERFLAGS=$(CXXFLAGS)
+	LINKER=$(LDXX)
+	LINKERFLAGS=$(LDXXFLAGS)
+else
+	$(error Unknown language $(LNG). Please select from c or cpp.)
+endif
 
-$(BIN_DIR)/$(DEBUGPREFIX)%-cpp.o: %.cpp | $(BIN_DIR)
-	$(CXX) $(CXXFLAGS) -o $@ -c $<
+$(BIN_DIR)/%-$(LNG)$(DEBUGPOSTFIX).o: %.$(LNG) | $(BIN_DIR)
+	$(COMPILER) $(COMPILERFLAGS) -o $@ -c $<
 
 TST_SRC=$(TST_DIR)/$(LNG)/$(STR)-tst.$(LNG)
 IMP_SRC=$(SRC_DIR)/$(STR)/$(LNG)/$(STR)-$(IMP).$(LNG)
 SRC=$(TST_SRC) $(IMP_SRC)
-OBJ=$(patsubst %.$(LNG),$(DEBUGPREFIX)%-$(LNG).o,$(notdir $(SRC)))
-EXE=$(BIN_DIR)/$(DEBUGPREFIX)$(STR)-$(IMP)-$(LNG)-test
+OBJ=$(patsubst %.$(LNG),$(BIN_DIR)/%-$(LNG)$(DEBUGPOSTFIX).o,$(notdir $(SRC)))
+EXE=$(BIN_DIR)/$(STR)-$(IMP)-$(LNG)$(DEBUGPREFIX)-test
 $(EXE): $(OBJ)
-	$(CC) -o $@ $^
+	$(LINKER) $(LINKERFLAGS) -o $@ $^
 
 .PHONY: test
 test: $(EXE)
