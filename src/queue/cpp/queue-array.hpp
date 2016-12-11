@@ -10,15 +10,15 @@ public:
   ~queue_array_t();
   
   // information
-  size_t size();
-  void *peek();
+  size_t size() const;
+  const void *peek() const;
 
   // manipulation
-  void add(void *element);
-  void *remove();
+  void add(const void *element);
+  const void *remove();
 
 private:
-  void **data;
+  const void **data;
   size_t cur_size;
   size_t max_size;
 

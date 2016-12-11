@@ -18,12 +18,12 @@ public:
   virtual ~queue_t() { };
 
   // information
-  virtual size_t size() = 0;
-  virtual void *peek() = 0;
+  virtual size_t size() const = 0;
+  virtual const void *peek() const = 0;
 
   // manipulation
-  virtual void add(void *element) = 0;
-  virtual void *remove() = 0;
+  virtual void add(const void *element) = 0;
+  virtual const void *remove() = 0;
 };
 
 #endif // __QUEUE_HPP__

@@ -37,7 +37,7 @@ static void run_queue_test(queue_t *queue)
   size = queue->size();
   tst_expect_equals(size, 1);
 
-  void *data = queue->peek();
+  const void *data = queue->peek();
   tst_expect(data);
   tst_expect_equals(*(int *)data, TINY);
 
