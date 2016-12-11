@@ -1,0 +1,28 @@
+This is a repository of data structure implementations.
+
+All of the code in this repository roughly follows an object model.
+Each data structure* has an implementation** and a language***. There
+will then be statistics taken on each of the data structures****.
+
+* The data structures planned for this repository are:
+List           (list)
+Stack          (stack)
+Queue          (queue)
+Dequeue        (dequeue)
+Map            (map)
+Set            (set)
+Graph          (graph)
+
+** The implementation planned for this repository are as follows.
+Array List     (array)
+Linked List    (linked)
+Adjacency List (adjacencylist)
+2D Array       (2darray)
+
+*** Currently, the planned language support is for C and C++.
+
+*** Here are some statistics that could be taken on these data structures.
+Speed
+Big-O Analysis R^2
+Memory Use
+Code Size
