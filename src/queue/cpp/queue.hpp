@@ -11,7 +11,6 @@ public:
   size_t resize_factor;
 };
 
-// TODO: where do the const's go?
 class queue_t {
 public:
   // creation/deletion

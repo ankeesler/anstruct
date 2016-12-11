@@ -3,6 +3,8 @@
 #ifndef __QUEUE_ARRAY_HPP__
 #define __QUEUE_ARRAY_HPP__
 
+#include "queue.hpp"
+
 class queue_array_t : public queue_t {
 public:
   // creation/deletion

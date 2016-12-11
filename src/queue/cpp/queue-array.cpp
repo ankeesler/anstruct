@@ -1,6 +1,5 @@
 // queue-array.cpp
 
-#include "queue.hpp"
 #include "queue-array.hpp"
 
 queue_array_t::queue_array_t(const queue_init_t& init)
