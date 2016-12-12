@@ -17,3 +17,4 @@ runtest LNG=c STR=queue IMP=array
 runtest LNG=c STR=queue IMP=linked
 
 runtest LNG=cpp STR=queue IMP=array
+runtest LNG=cpp STR=list IMP=linked

@@ -18,9 +18,9 @@ public:
   // manipulation
   virtual void addfront(const void *element) = 0;
   virtual void addback(const void *element) = 0;
-  virtual void removefront(const void *element, comparator_t& comparator) = 0;
-  virtual void removeback(const void *element, comparator_t& comparator) = 0;
-  virtual void remove(const void *element, comparator_t& comparator) = 0;
+  virtual const void *removefront(const void *element, comparator_t& comparator) = 0;
+  virtual const void *removeback(const void *element, comparator_t& comparator) = 0;
+  virtual const void *remove(const void *element, comparator_t& comparator) = 0;
   virtual void reverse() = 0;
   virtual void insert(const void *element, size_t index) = 0;
 };

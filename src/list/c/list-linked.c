@@ -125,9 +125,9 @@ void list_reverse(struct list_t *list)
     node->previous = next;
     node = next;
   }
-  struct node_t *old_head = list->head;
+  node = list->head;
   list->head = list->tail;
-  list->tail = old_head;
+  list->tail = node;
 }
 
 struct node_t *node_alloc(const void *data)
