@@ -28,8 +28,8 @@ VPATH += $(shell find $(SRC_DIR) $(TST_DIR) -type d)
 
 ifdef DEBUG
   DEBUGPOSTFIX = -debug
-	CDEFINES += -DTST_VERBOSE
-	CXXDEFINES += -DTST_VERBOSE
+  CDEFINES += -DTST_VERBOSE
+  CXXDEFINES += -DTST_VERBOSE
 endif
 
 -include $(wildcard $(BIN_DIR)/*.d)
@@ -59,7 +59,7 @@ STR =
 IMP =
 ifeq ($(MAKECMDGOALS),test)
   ifndef LNG
-    $(error Must define LNG has c or cpp.)
+   $(error Must define LNG has c or cpp.)
   endif
   ifndef STR
     $(error Must defin STR as an struct.)
@@ -67,22 +67,21 @@ ifeq ($(MAKECMDGOALS),test)
   ifndef IMP
     $(error Must defin IMP as an implementation.)
   endif
-endif
 
-ifeq ($(LNG),c)
-	COMPILER=$(CC)
-	COMPILERFLAGS=$(CFLAGS)
-	LINKER=$(LD)
-	LINKERFLAGS=$(LDFLAGS)
-else ifeq ($(LNG),cpp)
-  COMPILER=$(CXX)
-	COMPILERFLAGS=$(CXXFLAGS)
-	LINKER=$(LDXX)
-	LINKERFLAGS=$(LDXXFLAGS)
-else
-	$(error Unknown language $(LNG). Please select from c or cpp.)
+  ifeq ($(LNG),c)
+    COMPILER=$(CC)
+    COMPILERFLAGS=$(CFLAGS)
+    LINKER=$(LD)
+    LINKERFLAGS=$(LDFLAGS)
+  else ifeq ($(LNG),cpp)
+    COMPILER=$(CXX)
+    COMPILERFLAGS=$(CXXFLAGS)
+    LINKER=$(LDXX)
+    LINKERFLAGS=$(LDXXFLAGS)
+  else
+    $(error Unknown language $(LNG). Please select from c or cpp.)
+  endif
 endif
-
 $(BIN_DIR)/%-$(LNG)$(DEBUGPOSTFIX).o: %.$(LNG) | $(BIN_DIR)
 	$(COMPILER) $(COMPILERFLAGS) -o $@ -c $<
 
