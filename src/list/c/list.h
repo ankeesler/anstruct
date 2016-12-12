@@ -24,6 +24,8 @@ const void *list_get(const struct list_t *list, size_t index);
 /* manipulation */
 void list_addfront(struct list_t *list, const void *element);
 void list_addback(struct list_t *list, const void *element);
+const void *list_removefront(struct list_t *list); // TODO: implement me
+const void *list_removeback(struct list_t *list); // TODO: implement me
 const void *list_remove(struct list_t *list, const void *element, comparator_t comparator);
 void list_reverse(struct list_t *list);
 void list_insert(struct list_t *list, size_t index); // TODO: implement me
