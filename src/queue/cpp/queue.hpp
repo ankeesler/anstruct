@@ -3,7 +3,7 @@
 #ifndef __QUEUE_HPP__
 #define __QUEUE_HPP__
 
-#include "cpp/types.h"
+#include "cpp/types.hpp"
 
 class queue_init_t {
 public:

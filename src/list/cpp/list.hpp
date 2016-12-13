@@ -3,7 +3,7 @@
 #ifndef __LIST_HPP__
 #define __LIST_HPP__
 
-#include "cpp/types.h"
+#include "cpp/types.hpp"
 
 class list_t {
 public:
