@@ -9,13 +9,16 @@ List           (list)
 Stack          (stack)
 Queue          (queue)
 Dequeue        (dequeue)
+Priority Queue (priorityqueue)
 Map            (map)
 Set            (set)
 Graph          (graph)
 
-** The implementation planned for this repository are as follows.
+** The implementations planned for this repository are as follows.
 Array List     (array)
 Linked List    (linked)
+Heap           (heap)
+Tree           (tree)
 Adjacency List (adjacencylist)
 2D Array       (2darray)
 
