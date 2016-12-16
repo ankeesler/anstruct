@@ -9,7 +9,7 @@
 
 class comparator_t {
 public:
-  virtual int equals(const void *arg0, const void *arg1) { return arg0 == arg1; }
+  virtual long compare(const void *arg0, const void *arg1) { return (long)arg0 - (long)arg1; }
 };
 
 #endif // __TYPES_HPP__

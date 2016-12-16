@@ -20,7 +20,7 @@ size_t list_linked_t::size() const
 const void *list_linked_t::find(const void *element, comparator_t& comparator) const
 {
   node_t *node = this->head;
-  while (node != NULL && !comparator.equals(node->data, element)) {
+  while (node != NULL && comparator.compare(node->data, element) != 0) {
     node = node->next;
   }
   return (node != NULL ? node->data : NULL);
@@ -77,7 +77,7 @@ const void *list_linked_t::remove(const void *element, comparator_t& comparator)
 {
   // TODO: how do I make this a private helper function?
   node_t *node = this->head;
-  while (node != NULL && !comparator.equals(node->data, element)) {
+  while (node != NULL && comparator.compare(node->data, element) != 0) {
     node = node->next;
   }
   if (node == NULL) {
