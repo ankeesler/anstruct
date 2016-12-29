@@ -28,9 +28,11 @@ static void run_list_test(list_t *list);
 
 int main(int argc, char *argv[])
 {
+  tst_start();
   list_t *list = new list_linked_t();
   run_list_test(list);
   delete list;
+  tst_end();
   return 0;
 }
 

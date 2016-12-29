@@ -14,6 +14,8 @@ static void run_queue_test(queue_t *queue);
 
 int main(int argc, char *argv[])
 {
+  tst_start();
+
   queue_init_t init;
   init.size = 3;
   init.resize_factor = 2;
@@ -22,6 +24,8 @@ int main(int argc, char *argv[])
   run_queue_test(queue);
 
   delete queue;
+
+  tst_end();
 
   return 0;
 }
