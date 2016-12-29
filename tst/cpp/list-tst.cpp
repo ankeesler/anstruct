@@ -18,9 +18,9 @@ public:
     return instance;
   }
 
-  int equals(const void *arg0, const void *arg1)
+  long compare(const void *arg0, const void *arg1)
   {
-    return (*(int *)arg0 == *(int *)arg1);
+    return (*(int *)arg0 - *(int *)arg1);
   }
 };
 
