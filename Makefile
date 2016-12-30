@@ -89,7 +89,7 @@ TST_SRC=$(TST_DIR)/$(LNG)/$(STR)-tst.$(LNG)
 IMP_SRC=$(SRC_DIR)/$(STR)/$(LNG)/$(STR)-$(IMP).$(LNG)
 SRC=$(TST_SRC) $(IMP_SRC)
 OBJ=$(patsubst %.$(LNG),$(BIN_DIR)/%-$(LNG)$(DEBUGPOSTFIX).o,$(notdir $(SRC)))
-EXE=$(BIN_DIR)/$(STR)-$(IMP)-$(LNG)$(DEBUGPREFIX)-test
+EXE=$(BIN_DIR)/$(STR)-$(IMP)-$(LNG)$(DEBUGPREFIX)-tst
 $(EXE): $(OBJ)
 	$(LINKER) $(LINKERFLAGS) -o $@ $^
 
