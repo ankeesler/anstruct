@@ -85,8 +85,8 @@ const void *list_linked_t::remove(const void *element, comparator_t& comparator)
   }
 
   const void *data = node->data;
-  int head = (node->previous == NULL);
-  int tail = (node->next == NULL);
+  bool head = (node->previous == NULL);
+  bool tail = (node->next == NULL);
   if (head && tail) {
     this->head = NULL;
     this->tail = NULL;
