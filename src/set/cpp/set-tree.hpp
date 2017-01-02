@@ -21,7 +21,7 @@ public:
 private:
   class node_t {
   public:
-    node_t(const void *data) : left(NULL), right(NULL), data(data) {}
+    node_t(const void *data) : left(nullptr), right(nullptr), data(data) {}
     node_t *left;
     node_t *right;
     const void *data;

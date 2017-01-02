@@ -24,7 +24,7 @@ bool set_tree_t::contains(const void *element) const
 
 bool set_tree_t::add(const void *element)
 {
-  if (this->root == NULL) {
+  if (this->root == nullptr) {
     this->root = new node_t(element);
     this->cur_size++;
     return true;
@@ -49,14 +49,14 @@ bool set_tree_t::add(const void *element, node_t *parent)
   if (cmp == 0) { // element == parent->element
     return false;
   } else if (cmp < 0) { // element < parent->element
-    if (parent->left == NULL) {
+    if (parent->left == nullptr) {
       parent->left = new node_t(element);
       return true;
     } else {
       return add(element, parent->left);
     }
   } else { // element > parent->element
-    if (parent->right == NULL) {
+    if (parent->right == nullptr) {
       parent->right = new node_t(element);
       return true;
     } else {
@@ -67,7 +67,7 @@ bool set_tree_t::add(const void *element, node_t *parent)
 
 bool set_tree_t::contains(const void *element, node_t *parent) const
 {
-  return (parent != NULL
+  return (parent != nullptr
           && (this->comparator.compare(element, parent->data) == 0
               || contains(element, parent->left)
               || contains(element, parent->right)));

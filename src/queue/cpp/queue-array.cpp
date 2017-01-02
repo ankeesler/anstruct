@@ -21,7 +21,7 @@ size_t queue_array_t::size() const
 
 const void *queue_array_t::peek() const
 {
-  return (this->cur_size == 0 ? NULL : this->data[0]);
+  return (this->cur_size == 0 ? nullptr : this->data[0]);
 }
 
 void queue_array_t::add(const void *element)
@@ -39,7 +39,7 @@ void queue_array_t::add(const void *element)
 const void *queue_array_t::remove()
 {
   const void *data = this->peek();
-  if (data != NULL) {
+  if (data != nullptr) {
     this->cur_size--;
     memmove(this->data, this->data + 1, this->cur_size * sizeof(data));
   }

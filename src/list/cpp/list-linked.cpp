@@ -5,7 +5,7 @@
 list_linked_t::~list_linked_t()
 {
   node_t *node = this->head, *next;
-  while (node != NULL) {
+  while (node != nullptr) {
     next = node->next;
     delete node;
     node = next;
@@ -20,24 +20,24 @@ size_t list_linked_t::size() const
 const void *list_linked_t::find(const void *element, comparator_t& comparator) const
 {
   node_t *node = this->head;
-  while (node != NULL && comparator.compare(node->data, element) != 0) {
+  while (node != nullptr && comparator.compare(node->data, element) != 0) {
     node = node->next;
   }
-  return (node != NULL ? node->data : NULL);
+  return (node != nullptr ? node->data : nullptr);
 }
 
 const void *list_linked_t::get(size_t index) const
 {
   node_t *node = this->head;
-  while (node != NULL && index--) {
+  while (node != nullptr && index--) {
     node = node->next;
   }
-  return (node != NULL ? node->data : NULL);
+  return (node != nullptr ? node->data : nullptr);
 }
 
 void list_linked_t::addfront(const void *element)
 {
-  if (this->head == NULL) {
+  if (this->head == nullptr) {
     this->head = new node_t(element);
     this->tail = this->head;
   } else {
@@ -51,7 +51,7 @@ void list_linked_t::addfront(const void *element)
 
 void list_linked_t::addback(const void *element)
 {
-  if (this->tail == NULL) {
+  if (this->tail == nullptr) {
     this->tail = new node_t(element);
     this->head = this->tail;
   } else {
@@ -65,37 +65,37 @@ void list_linked_t::addback(const void *element)
 
 const void *list_linked_t::removefront(const void *element, comparator_t& comparator)
 {
-  return NULL;
+  return nullptr;
 }
 
 const void *list_linked_t::removeback(const void *element, comparator_t& comparator)
 {
-  return NULL;
+  return nullptr;
 }
 
 const void *list_linked_t::remove(const void *element, comparator_t& comparator)
 {
   // TODO: how do I make this a private helper function?
   node_t *node = this->head;
-  while (node != NULL && comparator.compare(node->data, element) != 0) {
+  while (node != nullptr && comparator.compare(node->data, element) != 0) {
     node = node->next;
   }
-  if (node == NULL) {
-    return NULL;
+  if (node == nullptr) {
+    return nullptr;
   }
 
   const void *data = node->data;
-  bool head = (node->previous == NULL);
-  bool tail = (node->next == NULL);
+  bool head = (node->previous == nullptr);
+  bool tail = (node->next == nullptr);
   if (head && tail) {
-    this->head = NULL;
-    this->tail = NULL;
+    this->head = nullptr;
+    this->tail = nullptr;
   } else if (head && !tail) {
     this->head = node->next;
-    this->head->previous = NULL;
+    this->head->previous = nullptr;
   } else if (!head && tail) {
     this->tail = node->previous;
-    this->tail->next = NULL;    
+    this->tail->next = nullptr;    
   } else { // !head && !tail
     node->previous->next = node->next;
     node->next->previous = node->previous;
@@ -108,7 +108,7 @@ const void *list_linked_t::remove(const void *element, comparator_t& comparator)
 void list_linked_t::reverse()
 {
   node_t *node = this->head;
-  while (node != NULL) {
+  while (node != nullptr) {
     node_t *next = node->next;
     node->next = node->previous;
     node->previous = next;

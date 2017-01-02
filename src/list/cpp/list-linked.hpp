@@ -30,8 +30,8 @@ private:
     node_t(const void *data)
     {
       this->data = data;
-      this->next = NULL;
-      this->previous = NULL;
+      this->next = nullptr;
+      this->previous = nullptr;
     }
 
     const void *data;
