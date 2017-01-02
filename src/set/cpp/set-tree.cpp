@@ -45,7 +45,7 @@ bool set_tree_t::remove(const void *element)
 
 bool set_tree_t::add(const void *element, node_t *parent)
 {
-  int cmp = this->comparator.compare(element, parent->data);
+  long cmp = this->comparator.compare(element, parent->data);
   if (cmp == 0) { // element == parent->element
     return false;
   } else if (cmp < 0) { // element < parent->element
