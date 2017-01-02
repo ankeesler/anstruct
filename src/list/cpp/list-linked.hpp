@@ -27,13 +27,7 @@ public:
 private:
   class node_t {
   public:
-    node_t(const void *data)
-    {
-      this->data = data;
-      this->next = nullptr;
-      this->previous = nullptr;
-    }
-
+    node_t(const void *d) : data(d), next(nullptr), previous(nullptr) { }
     const void *data;
     node_t *next;
     node_t *previous; // TODO: config option for tail
