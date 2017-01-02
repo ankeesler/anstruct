@@ -10,20 +10,6 @@
 #define LARGE  1000
 #define GIANT  10000
 
-class integer_comparator_t : public comparator_t {
-public:
-  static integer_comparator_t& instance()
-  {
-    static integer_comparator_t instance;
-    return instance;
-  }
-
-  long compare(const void *arg0, const void *arg1) const
-  {
-    return (*(int *)arg0 - *(int *)arg1);
-  }
-};
-
 static void run_list_test(list_t *list);
 
 int main(int argc, char *argv[])
