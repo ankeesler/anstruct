@@ -20,11 +20,10 @@ public:
   const void *remove();
 
 private:
-  const void **data;
   size_t cur_size;
   size_t max_size;
-
   size_t resize_factor;
+  const void **data;
 };
 
 #endif //__QUEUE_ARRAY_HPP__

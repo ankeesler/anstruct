@@ -3,10 +3,11 @@
 #include "queue-array.hpp"
 
 queue_array_t::queue_array_t(const queue_init_t& init)
-  : cur_size(0), max_size(init.size), resize_factor(init.resize_factor)
+  : cur_size(0),
+    max_size(init.size),
+    resize_factor(init.resize_factor),
+    data((const void **)new void*[this->max_size])
 {
-  // TODO: how do I get rid of this cast?
-  this->data = (const void **)new void*[this->max_size];
 }
 
 queue_array_t::~queue_array_t()
