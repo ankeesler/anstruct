@@ -8,11 +8,13 @@ CXX = clang++
 
 CINCLUDES = -I. -Isrc/core
 CDEFINES =
-CFLAGS = -g -MD -Wall -Werror -O0 $(CINCLUDES) $(CDEFINES)
+COPTIMIZE =
+CFLAGS = -MD -Wall -Werror $(COPTIMIZE) $(CINCLUDES) $(CDEFINES)
 
 CXXINCLUDES = -I. -Isrc/core
 CXXDEFINES =
-CXXFLAGS = -g -MD -Wall -Werror -O0 $(CXXINCLUDES) $(CXXDEFINES)
+CXXOPTIMIZE =
+CXXFLAGS = -MD -Wall -Werror $(CXXOPTIMIZE) $(CXXINCLUDES) $(CXXDEFINES)
 
 LD = clang
 LDXX = clang++
@@ -32,6 +34,15 @@ ifdef DEBUG
   CXXDEFINES += -DTST_VERBOSE
 endif
 
+ifdef OPTIMIZE
+	COPTIMIZE += -Oz
+	CXXOPTIMIZE += -Oz
+endif
+ifndef OPTIMIZE
+	COPTIMIZE += -g -O0
+	CXXOPTIMIZE += -g -O0
+endif
+
 -include $(wildcard $(BIN_DIR)/*.d)
 
 $(BIN_DIR):
@@ -49,6 +60,14 @@ echo-%:
 clean:
 	rm -rf $(BIN_DIR)
 	find . -name "*~" | xargs rm
+
+.PHONY: queue-array-cpp
+queue-array-cpp:
+	make test STR=queue IMP=array LNG=cpp
+
+.PHONY: queue-array-c
+queue-array-c:
+	make test STR=queue IMP=array LNG=c
 
 #
 # Testing
