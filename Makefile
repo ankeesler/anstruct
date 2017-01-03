@@ -136,4 +136,21 @@ test: $(EXE)
 
 .PHONY: test-all
 test-all:
-	./test.sh
+	@make test LNG=c STR=list IMP=array > /dev/null
+	@echo LNG=c STR=list IMP=array PASS
+	@make test LNG=c STR=list IMP=linked > /dev/null
+	@echo LNG=c STR=list IMP=array PASS
+	@make test LNG=c STR=stack IMP=array > /dev/null
+	@echo LNG=c STR=list IMP=array PASS
+	@make test LNG=c STR=stack IMP=linked > /dev/null
+	@echo LNG=c STR=list IMP=array PASS
+	@make test LNG=c STR=queue IMP=array > /dev/null
+	@echo LNG=c STR=list IMP=array PASS
+	@make test LNG=c STR=queue IMP=linked > /dev/null
+	@echo LNG=c STR=list IMP=array PASS
+	@make test LNG=cpp STR=queue IMP=array > /dev/null
+	@echo LNG=c STR=list IMP=array PASS
+	@make test LNG=cpp STR=list IMP=linked > /dev/null
+	@echo LNG=c STR=list IMP=array PASS
+	@make test LNG=cpp STR=set IMP=tree > /dev/null
+	@echo LNG=c STR=list IMP=array PASS
