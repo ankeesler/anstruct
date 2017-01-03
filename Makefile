@@ -1,3 +1,5 @@
+.PHONY:
+all: test-all
 
 #
 # Building
@@ -101,21 +103,33 @@ ifeq ($(MAKECMDGOALS),test)
     $(error Unknown language $(LNG). Please select from c or cpp.)
   endif
 endif
+
 $(BIN_DIR)/%-$(LNG)$(DEBUGPOSTFIX).o: %.$(LNG) | $(BIN_DIR)
 	$(COMPILER) $(COMPILERFLAGS) -o $@ -c $<
 
 $(BIN_DIR)/%-$(LNG)$(DEBUGPOSTFIX).s: %.$(LNG) | $(BIN_DIR)
 	$(COMPILER) $(COMPILERFLAGS) -o $@ -S $<
 
+$(BIN_DIR)/%.nm: $(BIN_DIR)/%.o | $(BIN_DIR)
+	nm -anx $< > $@
+
 TST_SRC=$(TST_DIR)/$(LNG)/$(STR)-tst.$(LNG)
 IMP_SRC=$(SRC_DIR)/$(STR)/$(LNG)/$(STR)-$(IMP).$(LNG)
 SRC=$(TST_SRC) $(IMP_SRC)
-OBJ=$(patsubst %.$(LNG),$(BIN_DIR)/%-$(LNG)$(DEBUGPOSTFIX).o,$(notdir $(SRC)))
-ASM=$(patsubst %.$(LNG),$(BIN_DIR)/%-$(LNG)$(DEBUGPOSTFIX).s,$(notdir $(SRC)))
+
+BASEFILE=$(patsubst %.$(LNG),$(BIN_DIR)/%-$(LNG)$(DEBUGPOSTFIX).,$(notdir $(SRC)))
+OBJ=$(patsubst %, %o, $(BASEFILE))
+ASM=$(patsubst %, %s, $(BASEFILE))
+NMS=$(patsubst %, %nm, $(BASEFILE))
+
 EXE=$(BIN_DIR)/$(STR)-$(IMP)-$(LNG)$(DEBUGPREFIX)-tst
-$(EXE): $(OBJ) | $(ASM)
+$(EXE): $(OBJ) | $(ASM) $(NMS)
 	$(LINKER) $(LINKERFLAGS) -o $@ $^
 
 .PHONY: test
 test: $(EXE)
 	./$(EXE)
+
+.PHONY: test-all
+test-all:
+	./test.sh
