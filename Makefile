@@ -110,8 +110,11 @@ $(BIN_DIR)/%-$(LNG)$(DEBUGPOSTFIX).o: %.$(LNG) | $(BIN_DIR)
 $(BIN_DIR)/%-$(LNG)$(DEBUGPOSTFIX).s: %.$(LNG) | $(BIN_DIR)
 	$(COMPILER) $(COMPILERFLAGS) -o $@ -S $<
 
-$(BIN_DIR)/%.nm: $(BIN_DIR)/%.o | $(BIN_DIR)
-	nm -anx $< > $@
+$(BIN_DIR)/%.o.nm: $(BIN_DIR)/%.o | $(BIN_DIR)
+	nm -n $< > $@
+
+$(BIN_DIR)/%.o.size: $(BIN_DIR)/%.o | $(BIN_DIR)
+	size $< > $@
 
 TST_SRC=$(TST_DIR)/$(LNG)/$(STR)-tst.$(LNG)
 IMP_SRC=$(SRC_DIR)/$(STR)/$(LNG)/$(STR)-$(IMP).$(LNG)
@@ -120,10 +123,11 @@ SRC=$(TST_SRC) $(IMP_SRC)
 BASEFILE=$(patsubst %.$(LNG),$(BIN_DIR)/%-$(LNG)$(DEBUGPOSTFIX).,$(notdir $(SRC)))
 OBJ=$(patsubst %, %o, $(BASEFILE))
 ASM=$(patsubst %, %s, $(BASEFILE))
-NMS=$(patsubst %, %nm, $(BASEFILE))
+NMS=$(patsubst %, %o.nm, $(BASEFILE))
+SIZ=$(patsubst %, %o.size, $(BASEFILE))
 
 EXE=$(BIN_DIR)/$(STR)-$(IMP)-$(LNG)$(DEBUGPREFIX)-tst
-$(EXE): $(OBJ) | $(ASM) $(NMS)
+$(EXE): $(OBJ) | $(ASM) $(NMS) $(SIZ)
 	$(LINKER) $(LINKERFLAGS) -o $@ $^
 
 .PHONY: test
