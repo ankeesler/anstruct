@@ -9,7 +9,7 @@ set_tree_t::set_tree_t(const comparator_t& comparator)
 
 set_tree_t::~set_tree_t()
 {
-  
+  set_tree_t::free(this->root);
 }
   
 size_t set_tree_t::size() const
@@ -71,4 +71,13 @@ bool set_tree_t::contains(const void *element, node_t *parent) const
           && (this->comparator.compare(element, parent->data) == 0
               || contains(element, parent->left)
               || contains(element, parent->right)));
+}
+
+void set_tree_t::free(node_t *parent)
+{
+  if (parent != nullptr) {
+    set_tree_t::free(parent->left);
+    set_tree_t::free(parent->right);
+    delete parent;
+  }
 }

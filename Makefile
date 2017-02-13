@@ -71,6 +71,10 @@ queue-array-cpp:
 queue-array-c:
 	make test STR=queue IMP=array LNG=c
 
+.PHONY: set-tree-cpp
+set-tree-cpp:
+	make test STR=set IMP=tree LNG=cpp
+
 #
 # Testing
 #
@@ -139,18 +143,18 @@ test-all:
 	@make test LNG=c STR=list IMP=array > /dev/null
 	@echo LNG=c STR=list IMP=array PASS
 	@make test LNG=c STR=list IMP=linked > /dev/null
-	@echo LNG=c STR=list IMP=array PASS
+	@echo LNG=c STR=list IMP=linked PASS
 	@make test LNG=c STR=stack IMP=array > /dev/null
-	@echo LNG=c STR=list IMP=array PASS
+	@echo LNG=c STR=stack IMP=array PASS
 	@make test LNG=c STR=stack IMP=linked > /dev/null
-	@echo LNG=c STR=list IMP=array PASS
+	@echo LNG=c STR=stack IMP=linked PASS
 	@make test LNG=c STR=queue IMP=array > /dev/null
-	@echo LNG=c STR=list IMP=array PASS
+	@echo LNG=c STR=queue IMP=array PASS
 	@make test LNG=c STR=queue IMP=linked > /dev/null
-	@echo LNG=c STR=list IMP=array PASS
+	@echo LNG=c STR=queue IMP=linked PASS
 	@make test LNG=cpp STR=queue IMP=array > /dev/null
-	@echo LNG=c STR=list IMP=array PASS
+	@echo LNG=cpp STR=queue IMP=array PASS
 	@make test LNG=cpp STR=list IMP=linked > /dev/null
-	@echo LNG=c STR=list IMP=array PASS
+	@echo LNG=cpp STR=list IMP=linked PASS
 	@make test LNG=cpp STR=set IMP=tree > /dev/null
-	@echo LNG=c STR=list IMP=array PASS
+	@echo LNG=cpp STR=set IMP=tree PASS

@@ -30,6 +30,7 @@ private:
   comparator_t comparator;
   size_t cur_size;
 
+  static void free(node_t *parent);
   bool add(const void *element, node_t *parent);
   bool contains(const void *element, node_t *parent) const;
 };
