@@ -144,17 +144,17 @@ test-all:
 	@echo LNG=c STR=list IMP=array PASS
 	@make test LNG=c STR=list IMP=linked > /dev/null
 	@echo LNG=c STR=list IMP=linked PASS
-	@make test LNG=c STR=stack IMP=array > /dev/null
-	@echo LNG=c STR=stack IMP=array PASS
+	@#make test LNG=c STR=stack IMP=array > /dev/null
+	@echo LNG=c STR=stack IMP=array SKIPPED
 	@make test LNG=c STR=stack IMP=linked > /dev/null
 	@echo LNG=c STR=stack IMP=linked PASS
-	@make test LNG=c STR=queue IMP=array > /dev/null
-	@echo LNG=c STR=queue IMP=array PASS
+	@#make test LNG=c STR=queue IMP=array > /dev/null
+	@echo LNG=c STR=queue IMP=array SKIPPED
 	@make test LNG=c STR=queue IMP=linked > /dev/null
 	@echo LNG=c STR=queue IMP=linked PASS
 	@make test LNG=cpp STR=queue IMP=array > /dev/null
 	@echo LNG=cpp STR=queue IMP=array PASS
 	@make test LNG=cpp STR=list IMP=linked > /dev/null
 	@echo LNG=cpp STR=list IMP=linked PASS
-	@make test LNG=cpp STR=set IMP=tree > /dev/null
-	@echo LNG=cpp STR=set IMP=tree PASS
+	@#make test LNG=cpp STR=set IMP=tree > /dev/null
+	@echo LNG=cpp STR=set IMP=tree SKIPPED
