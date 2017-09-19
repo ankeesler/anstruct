@@ -75,6 +75,10 @@ queue-array-c:
 set-tree-cpp:
 	make test STR=set IMP=tree LNG=cpp
 
+.PHONY: sort
+sort:
+	DEBUG=1 make test LNG=c STR=sort IMP=yeah
+
 #
 # Testing
 #
@@ -140,6 +144,8 @@ test: $(EXE)
 
 .PHONY: test-all
 test-all:
+	@make test LNG=c STR=sort IMP=yeah > /dev/null
+	@echo LNG=c STR=sort IMP= PASSED
 	@make test LNG=c STR=list IMP=array > /dev/null
 	@echo LNG=c STR=list IMP=array PASS
 	@make test LNG=c STR=list IMP=linked > /dev/null
